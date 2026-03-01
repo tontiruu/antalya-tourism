@@ -2,8 +2,18 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import SectionHeader from './SectionHeader';
+import galleryAzureSea from '../../public/images/gallery-azure-sea.jpg';
+import galleryKaleici from '../../public/images/gallery-kaleici.jpg';
+import gallerySuluadaClear from '../../public/images/gallery-suluada-clear.jpg';
+import galleryDudenFalls from '../../public/images/gallery-duden-falls.jpg';
+import gallerySunsetBeach from '../../public/images/gallery-sunset-beach.jpg';
+import galleryAspendos from '../../public/images/gallery-aspendos.jpg';
+import galleryCruise from '../../public/images/gallery-cruise.jpg';
+import gallerySuluadaBeach from '../../public/images/gallery-suluada-beach.jpg';
+import galleryTurkishFood from '../../public/images/gallery-turkish-food.jpg';
+import galleryParagliding from '../../public/images/gallery-paragliding.jpg';
 
 const galleryItems = [
   {
@@ -12,7 +22,7 @@ const galleryItems = [
     subtitle: 'Azure Mediterranean',
     gradient: 'from-cyan-500 to-blue-600',
     size: 'col-span-1 md:col-span-2 md:row-span-2',
-    image: '/images/gallery-azure-sea.jpg',
+    image: galleryAzureSea,
   },
   {
     id: 2,
@@ -20,7 +30,7 @@ const galleryItems = [
     subtitle: 'Kaleiçi Alleyways',
     gradient: 'from-amber-700 to-orange-800',
     size: 'col-span-1 row-span-1',
-    image: '/images/gallery-kaleici.jpg',
+    image: galleryKaleici,
   },
   {
     id: 9,
@@ -28,7 +38,7 @@ const galleryItems = [
     subtitle: 'Crystal Clear Suluada',
     gradient: 'from-cyan-300 to-teal-500',
     size: 'col-span-1 md:col-span-2',
-    image: '/images/gallery-suluada-clear.jpg',
+    image: gallerySuluadaClear,
   },
   {
     id: 3,
@@ -36,7 +46,7 @@ const galleryItems = [
     subtitle: 'Düden Waterfalls',
     gradient: 'from-cyan-600 to-teal-700',
     size: 'col-span-1 md:row-span-2',
-    image: '/images/gallery-duden-falls.jpg',
+    image: galleryDudenFalls,
   },
   {
     id: 4,
@@ -44,7 +54,7 @@ const galleryItems = [
     subtitle: 'Sunset Beach',
     gradient: 'from-orange-400 to-pink-500',
     size: 'col-span-1 row-span-1',
-    image: '/images/gallery-sunset-beach.jpg',
+    image: gallerySunsetBeach,
   },
   {
     id: 5,
@@ -52,7 +62,7 @@ const galleryItems = [
     subtitle: 'Aspendos Theatre',
     gradient: 'from-stone-500 to-amber-700',
     size: 'col-span-1 row-span-1',
-    image: '/images/gallery-aspendos.jpg',
+    image: galleryAspendos,
   },
   {
     id: 6,
@@ -60,7 +70,7 @@ const galleryItems = [
     subtitle: 'Mediterranean Cruise',
     gradient: 'from-blue-500 to-cyan-600',
     size: 'col-span-1 md:col-span-2',
-    image: '/images/gallery-cruise.jpg',
+    image: galleryCruise,
   },
   {
     id: 10,
@@ -68,7 +78,7 @@ const galleryItems = [
     subtitle: 'Suluada Beach',
     gradient: 'from-emerald-400 to-cyan-500',
     size: 'col-span-1 row-span-1',
-    image: '/images/gallery-suluada-beach.jpg',
+    image: gallerySuluadaBeach,
   },
   {
     id: 7,
@@ -76,7 +86,7 @@ const galleryItems = [
     subtitle: 'Turkish Cuisine',
     gradient: 'from-red-500 to-amber-600',
     size: 'col-span-1 row-span-1',
-    image: '/images/gallery-turkish-food.jpg',
+    image: galleryTurkishFood,
   },
   {
     id: 8,
@@ -84,7 +94,7 @@ const galleryItems = [
     subtitle: 'Paragliding',
     gradient: 'from-sky-400 to-cyan-500',
     size: 'col-span-1 row-span-1',
-    image: '/images/gallery-paragliding.jpg',
+    image: galleryParagliding,
   },
 ];
 
@@ -200,14 +210,14 @@ export default function Gallery() {
   return (
     <section id="gallery" className="py-24 bg-neutral-950 relative overflow-hidden">
       {/* ── Enhanced ambient glows ── */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-ocean-600/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-ocean-400/10 rounded-full blur-[120px]" />
-      <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-purple-500/8 rounded-full blur-[100px]" />
-      <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-pink-500/6 rounded-full blur-[100px]" />
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-ocean-600/10 rounded-full blur-[80px]" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-ocean-400/10 rounded-full blur-[80px]" />
+      <div className="absolute top-1/3 right-1/3 w-80 h-80 bg-purple-500/8 rounded-full blur-[70px]" />
+      <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-pink-500/6 rounded-full blur-[70px]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
@@ -219,10 +229,10 @@ export default function Gallery() {
             titleClassName="text-white"
             subtitleClassName="text-ocean-400"
           />
-        </motion.div>
+        </m.div>
 
         {/* Masonry Grid */}
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -230,7 +240,7 @@ export default function Gallery() {
           className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[200px] gap-3 md:gap-4"
         >
           {galleryItems.map((item) => (
-            <motion.div
+            <m.div
               key={item.id}
               variants={itemVariants}
               className={`${item.size} relative rounded-2xl overflow-hidden cursor-pointer group`}
@@ -243,6 +253,7 @@ export default function Gallery() {
                 fill
                 className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                placeholder="blur"
               />
 
               {/* Dark overlay on hover */}
@@ -270,15 +281,15 @@ export default function Gallery() {
               <div className="absolute top-3 right-3 w-8 h-8 border-r-2 border-t-2 border-white/0 group-hover:border-white/70 transition-all duration-700 rounded-tr-sm" />
               <div className="absolute bottom-3 left-3 w-8 h-8 border-l-2 border-b-2 border-white/0 group-hover:border-white/70 transition-all duration-700 rounded-bl-sm" />
               <div className="absolute bottom-3 right-3 w-8 h-8 border-r-2 border-b-2 border-white/0 group-hover:border-white/70 transition-all duration-700 rounded-br-sm" />
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
 
       {/* ── Modal with navigation ── */}
       <AnimatePresence>
         {selectedItem && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -320,7 +331,7 @@ export default function Gallery() {
 
             {/* Image card */}
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={selectedItem.id}
                 initial={{ opacity: 0, scale: 0.85, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -336,6 +347,7 @@ export default function Gallery() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 900px"
+                  placeholder="blur"
                 />
 
                 {/* Content overlay */}
@@ -360,9 +372,9 @@ export default function Gallery() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </section>

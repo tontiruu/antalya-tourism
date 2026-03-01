@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import {
-  motion,
+  m,
   useScroll,
   useTransform,
   useReducedMotion,
@@ -15,6 +15,13 @@ import {
   charStaggerContainerVariants,
   charStaggerItemVariants,
 } from "@/lib/animations";
+import highlightKaleici from "../../public/images/highlight-kaleici.jpg";
+import galleryDudenFalls from "../../public/images/gallery-duden-falls.jpg";
+import highlightKonyaalti from "../../public/images/highlight-konyaalti.jpg";
+import galleryAspendos from "../../public/images/gallery-aspendos.jpg";
+import highlightMuseum from "../../public/images/highlight-museum.jpg";
+import highlightHadrian from "../../public/images/highlight-hadrian.jpg";
+import suluadaHeroImg from "../../public/images/suluada-hero.jpg";
 
 const highlights = [
   {
@@ -23,7 +30,7 @@ const highlights = [
     subtitle: "Kaleiçi Old Town",
     description:
       "オスマン帝国時代の美しい街並みが残る歴史地区。石畳の路地を歩けば、タイムスリップしたような感覚に。",
-    image: "/images/highlight-kaleici.jpg",
+    image: highlightKaleici,
   },
   {
     number: "02",
@@ -31,7 +38,7 @@ const highlights = [
     subtitle: "Düden Waterfalls",
     description:
       "地中海に直接流れ落ちる壮大な滝。海から眺めるボートツアーは圧巻の一言。",
-    image: "/images/gallery-duden-falls.jpg",
+    image: galleryDudenFalls,
   },
   {
     number: "03",
@@ -39,7 +46,7 @@ const highlights = [
     subtitle: "Konyaaltı Beach",
     description:
       "山と海が出会う全長7kmの美しいビーチ。透き通る地中海の青が広がります。",
-    image: "/images/highlight-konyaalti.jpg",
+    image: highlightKonyaalti,
   },
   {
     number: "04",
@@ -47,7 +54,7 @@ const highlights = [
     subtitle: "Aspendos Theatre",
     description:
       "2000年以上前に建てられた世界最高保存状態のローマ劇場。今もコンサートに使われています。",
-    image: "/images/gallery-aspendos.jpg",
+    image: galleryAspendos,
   },
   {
     number: "05",
@@ -55,7 +62,7 @@ const highlights = [
     subtitle: "Antalya Museum",
     description:
       "地中海地域最大級の考古学博物館。古代ギリシャ・ローマの至宝が眠る。",
-    image: "/images/highlight-museum.jpg",
+    image: highlightMuseum,
   },
   {
     number: "06",
@@ -63,7 +70,7 @@ const highlights = [
     subtitle: "Hadrian's Gate",
     description:
       "西暦130年に建てられた壮麗な凱旋門。旧市街への歴史的な入り口。",
-    image: "/images/highlight-hadrian.jpg",
+    image: highlightHadrian,
   },
   {
     number: "07",
@@ -71,7 +78,7 @@ const highlights = [
     subtitle: "Suluada Island",
     description:
       "トルコのモルディブと呼ばれる秘境の島。信じられないほど透き通った海が広がり、海底まで見渡せる。",
-    image: "/images/suluada-hero.jpg",
+    image: suluadaHeroImg,
   },
 ];
 
@@ -126,7 +133,7 @@ function HighlightItem({
         } items-center`}
       >
         {/* ── Photo Area — 55% with clipPath reveal ── */}
-        <motion.div
+        <m.div
           ref={photoRef}
           initial={
             shouldReduceMotion
@@ -150,7 +157,7 @@ function HighlightItem({
           className="w-full lg:w-[55%] relative overflow-hidden min-h-[400px] lg:min-h-[70vh] group"
         >
           {/* Parallax photo layer */}
-          <motion.div
+          <m.div
             style={{ y: photoY }}
             className="absolute -top-[15%] left-0 w-full h-[130%]"
           >
@@ -160,14 +167,15 @@ function HighlightItem({
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 55vw"
+              placeholder="blur"
             />
-          </motion.div>
+          </m.div>
 
           {/* Gradient overlay — deepens on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent group-hover:from-black/30 transition-all duration-700 pointer-events-none" />
 
           {/* Large number — delayed fade-up after photo reveals */}
-          <motion.span
+          <m.span
             initial={
               shouldReduceMotion
                 ? { opacity: 0.1, y: 0 }
@@ -182,27 +190,27 @@ function HighlightItem({
             className="absolute bottom-4 right-6 text-[150px] font-display font-bold text-white select-none leading-none pointer-events-none"
           >
             {item.number}
-          </motion.span>
-        </motion.div>
+          </m.span>
+        </m.div>
 
         {/* ── Text Area — 45% with counter-parallax ── */}
-        <motion.div
+        <m.div
           ref={textRef}
           style={{ y: textY }}
           className="w-full lg:w-[45%] px-8 py-12 lg:px-16 lg:py-16"
         >
           {/* English subtitle — tracking expansion + slide */}
-          <motion.span
+          <m.span
             variants={trackingExpandVariants}
             initial={motionInit}
             animate={shouldReduceMotion || isTextInView ? "visible" : "hidden"}
             className="text-sm text-ocean-500 uppercase block"
           >
             {item.subtitle}
-          </motion.span>
+          </m.span>
 
           {/* Japanese title — clipPath reveal from bottom */}
-          <motion.h3
+          <m.h3
             initial={
               shouldReduceMotion
                 ? { clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }
@@ -221,12 +229,12 @@ function HighlightItem({
             className="font-display text-3xl md:text-4xl text-gray-900 mt-2 mb-4"
           >
             {item.title}
-          </motion.h3>
+          </m.h3>
 
           {/* Accent divider — scale-in + shimmer sweep */}
           <div className="relative w-12 h-0.5 mb-6 overflow-hidden">
             {/* Divider bar */}
-            <motion.div
+            <m.div
               initial={shouldReduceMotion ? { scaleX: 1 } : { scaleX: 0 }}
               animate={
                 shouldReduceMotion || isTextInView
@@ -242,7 +250,7 @@ function HighlightItem({
             />
             {/* Shimmer light — only rendered when motion is enabled */}
             {!shouldReduceMotion && (
-              <motion.div
+              <m.div
                 initial={{ x: "-100%" }}
                 animate={isTextInView ? { x: "300%" } : { x: "-100%" }}
                 transition={{ duration: 0.8, ease: "easeInOut", delay: 0.9 }}
@@ -252,7 +260,7 @@ function HighlightItem({
           </div>
 
           {/* Description — blur dissolve fade-in */}
-          <motion.p
+          <m.p
             initial={
               shouldReduceMotion
                 ? { opacity: 1, filter: "blur(0px)" }
@@ -274,8 +282,8 @@ function HighlightItem({
             className="text-gray-600 text-base leading-relaxed font-body"
           >
             {item.description}
-          </motion.p>
-        </motion.div>
+          </m.p>
+        </m.div>
       </div>
     </div>
   );
@@ -298,7 +306,7 @@ export default function Highlights() {
       {/* ── Section Header ── */}
       <div ref={headerRef} className="text-center py-20 bg-white">
         {/* English subtitle — tracking expansion */}
-        <motion.p
+        <m.p
           initial={
             shouldReduceMotion
               ? { opacity: 1, letterSpacing: "0.3em" }
@@ -317,10 +325,10 @@ export default function Highlights() {
           className="text-sm text-ocean-500 uppercase mb-4"
         >
           Discover the Wonders
-        </motion.p>
+        </m.p>
 
         {/* Japanese title — character-by-character stagger reveal */}
-        <motion.h2
+        <m.h2
           variants={charStaggerContainerVariants}
           initial={motionInit}
           animate={
@@ -329,15 +337,15 @@ export default function Highlights() {
           className="font-display text-4xl md:text-5xl text-gray-900 font-bold"
         >
           {"アンタルヤの見どころ".split("").map((char, i) => (
-            <motion.span
+            <m.span
               key={i}
               variants={charStaggerItemVariants}
               className="inline-block"
             >
               {char}
-            </motion.span>
+            </m.span>
           ))}
-        </motion.h2>
+        </m.h2>
       </div>
 
       {/* ── Full-bleed photo showcase ── */}

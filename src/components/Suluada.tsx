@@ -1,9 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { containerVariants, itemVariants } from '@/lib/animations';
 import SectionHeader from './SectionHeader';
+import suluadaHeroImg from '../../public/images/suluada-hero.jpg';
+import suluadaTurquoise from '../../public/images/suluada-turquoise.jpg';
+import suluadaTropical from '../../public/images/suluada-tropical.jpg';
+import suluadaAerialBeach from '../../public/images/suluada-aerial-beach.jpg';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -96,17 +100,17 @@ const features = [
 
 const galleryImages = [
   {
-    src: '/images/suluada-turquoise.jpg',
+    src: suluadaTurquoise,
     alt: 'スルアダ島の透明な海のクローズアップ',
     caption: 'ターコイズの海',
   },
   {
-    src: '/images/suluada-tropical.jpg',
+    src: suluadaTropical,
     alt: 'スルアダ島の熱帯の海とビーチ',
     caption: 'クリスタルクリア',
   },
   {
-    src: '/images/suluada-aerial-beach.jpg',
+    src: suluadaAerialBeach,
     alt: 'スルアダ島の白砂と透き通る海の空撮',
     caption: '白砂のビーチ',
   },
@@ -133,11 +137,12 @@ export default function Suluada() {
       <div className="relative h-[80vh] min-h-[600px]">
         {/* Background Image */}
         <Image
-          src="/images/suluada-hero.jpg"
+          src={suluadaHeroImg}
           alt="上空から見たスルアダ島のエメラルドグリーンの海と白い砂浜"
           fill
           className="object-cover"
           sizes="100vw"
+          placeholder="blur"
         />
 
         {/* Gradient overlays for depth and readability */}
@@ -145,7 +150,7 @@ export default function Suluada() {
         <div className="absolute inset-0 bg-gradient-to-r from-ocean-950/40 via-transparent to-ocean-950/40" />
 
         {/* Aurora-style animated ambient glow */}
-        <motion.div
+        <m.div
           className="absolute bottom-0 left-1/4 w-3/4 h-1/2 rounded-full bg-cyan-400/8 blur-3xl"
           animate={
             shouldReduceMotion
@@ -158,7 +163,7 @@ export default function Suluada() {
           }
           transition={infiniteTransition(14)}
         />
-        <motion.div
+        <m.div
           className="absolute bottom-0 right-1/4 w-1/2 h-1/3 rounded-full bg-amber-400/5 blur-3xl"
           animate={
             shouldReduceMotion
@@ -173,22 +178,22 @@ export default function Suluada() {
         />
 
         {/* Floating decorative particles */}
-        <motion.div
+        <m.div
           className="absolute top-1/4 right-[15%] w-1.5 h-1.5 rounded-full bg-amber-300/40"
           animate={shouldReduceMotion ? undefined : { y: [0, -18, 0] }}
           transition={infiniteTransition(6)}
         />
-        <motion.div
+        <m.div
           className="absolute top-1/3 left-[12%] w-1 h-1 rounded-full bg-cyan-200/30"
           animate={shouldReduceMotion ? undefined : { y: [0, -14, 0] }}
           transition={infiniteTransition(5, 1)}
         />
-        <motion.div
+        <m.div
           className="absolute bottom-1/3 right-[25%] w-2 h-2 rounded-full bg-white/15"
           animate={shouldReduceMotion ? undefined : { y: [0, -22, 0] }}
           transition={infiniteTransition(7, 2)}
         />
-        <motion.div
+        <m.div
           className="absolute top-[45%] left-[30%] w-1 h-1 rounded-full bg-amber-200/25"
           animate={shouldReduceMotion ? undefined : { y: [0, -16, 0] }}
           transition={infiniteTransition(8, 0.5)}
@@ -197,44 +202,44 @@ export default function Suluada() {
         {/* Hero text content — anchored to bottom */}
         <div className="absolute inset-0 z-10 flex items-end">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 md:pb-24">
-            <motion.div
+            <m.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
             >
               {/* English label */}
-              <motion.p
+              <m.p
                 variants={itemVariants}
                 className="text-sm tracking-[0.3em] text-amber-300 uppercase font-medium mb-4"
               >
                 THE TURKISH MALDIVES
-              </motion.p>
+              </m.p>
 
               {/* Main title */}
-              <motion.h2
+              <m.h2
                 variants={itemVariants}
                 className="font-display text-5xl md:text-7xl text-white font-bold leading-tight mb-3"
               >
                 スルアダ島
-              </motion.h2>
+              </m.h2>
 
               {/* Subtitle */}
-              <motion.p
+              <m.p
                 variants={itemVariants}
                 className="text-xl md:text-2xl text-white/90 font-light mb-4"
               >
                 Suluada — 透明な海の楽園
-              </motion.p>
+              </m.p>
 
               {/* Decorative line */}
-              <motion.div
+              <m.div
                 variants={itemVariants}
                 className="w-16 h-px bg-gradient-to-r from-amber-300/60 to-transparent mb-6"
               />
 
               {/* Description */}
-              <motion.p
+              <m.p
                 variants={itemVariants}
                 className="text-white/70 text-base md:text-lg max-w-xl leading-relaxed"
               >
@@ -243,8 +248,8 @@ export default function Suluada() {
                 信じられないほど透き通った海が広がる、
                 <br className="hidden sm:block" />
                 手つかずの自然が残る秘境の島。
-              </motion.p>
-            </motion.div>
+              </m.p>
+            </m.div>
           </div>
         </div>
       </div>
@@ -255,7 +260,7 @@ export default function Suluada() {
       <div className="relative bg-gradient-to-b from-ocean-950 via-ocean-900 to-ocean-950 py-24 md:py-32">
         {/* Aurora ambient overlays */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div
+          <m.div
             className="absolute top-0 -left-1/4 w-3/4 h-3/4 rounded-full bg-cyan-400/6 blur-3xl"
             animate={
               shouldReduceMotion
@@ -268,7 +273,7 @@ export default function Suluada() {
             }
             transition={infiniteTransition(16)}
           />
-          <motion.div
+          <m.div
             className="absolute bottom-0 -right-1/4 w-2/3 h-2/3 rounded-full bg-teal-300/5 blur-3xl"
             animate={
               shouldReduceMotion
@@ -281,7 +286,7 @@ export default function Suluada() {
             }
             transition={infiniteTransition(20)}
           />
-          <motion.div
+          <m.div
             className="absolute top-1/2 left-1/3 w-1/2 h-1/2 rounded-full bg-amber-400/4 blur-3xl"
             animate={
               shouldReduceMotion
@@ -297,17 +302,17 @@ export default function Suluada() {
         </div>
 
         {/* Floating particles */}
-        <motion.div
+        <m.div
           className="absolute top-20 right-[18%] w-1.5 h-1.5 rounded-full bg-cyan-200/25"
           animate={shouldReduceMotion ? undefined : { y: [0, -16, 0] }}
           transition={infiniteTransition(6)}
         />
-        <motion.div
+        <m.div
           className="absolute bottom-32 left-[10%] w-1 h-1 rounded-full bg-amber-300/20"
           animate={shouldReduceMotion ? undefined : { y: [0, -12, 0] }}
           transition={infiniteTransition(7, 1.5)}
         />
-        <motion.div
+        <m.div
           className="absolute top-1/2 right-[8%] w-1 h-1 rounded-full bg-white/10"
           animate={shouldReduceMotion ? undefined : { y: [0, -20, 0] }}
           transition={infiniteTransition(8, 0.5)}
@@ -315,7 +320,7 @@ export default function Suluada() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
@@ -328,10 +333,10 @@ export default function Suluada() {
               subtitleClassName="text-ocean-400"
               gradientClass="from-ocean-400 to-cyan-400"
             />
-          </motion.div>
+          </m.div>
 
           {/* Feature Cards Grid */}
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -339,7 +344,7 @@ export default function Suluada() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           >
             {features.map((feature) => (
-              <motion.div
+              <m.div
                 key={feature.title}
                 variants={cardVariants}
                 className="group relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-8 transition-all duration-500 hover:bg-white/15 hover:border-white/30 hover:shadow-lg hover:shadow-cyan-500/10 hover:-translate-y-1"
@@ -364,9 +369,9 @@ export default function Suluada() {
 
                 {/* Subtle corner accent on hover */}
                 <div className="absolute top-3 right-3 w-5 h-5 border-r border-t border-white/0 group-hover:border-white/20 transition-all duration-500 rounded-tr-sm" />
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </div>
 
@@ -380,7 +385,7 @@ export default function Suluada() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
@@ -393,10 +398,10 @@ export default function Suluada() {
               subtitleClassName="text-ocean-400"
               gradientClass="from-cyan-400 to-ocean-400"
             />
-          </motion.div>
+          </m.div>
 
           {/* 3-Column Image Grid */}
-          <motion.div
+          <m.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -404,7 +409,7 @@ export default function Suluada() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
           >
             {galleryImages.map((image) => (
-              <motion.div
+              <m.div
                 key={image.caption}
                 variants={imageVariants}
                 className="group relative aspect-[4/3] rounded-2xl overflow-hidden"
@@ -416,6 +421,7 @@ export default function Suluada() {
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  placeholder="blur"
                 />
 
                 {/* Always-visible bottom gradient */}
@@ -439,9 +445,9 @@ export default function Suluada() {
                 {/* Corner accents on hover */}
                 <div className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-white/0 group-hover:border-white/50 transition-all duration-500 rounded-tl-sm" />
                 <div className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 border-white/0 group-hover:border-white/50 transition-all duration-500 rounded-br-sm" />
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

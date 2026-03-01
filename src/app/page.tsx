@@ -1,13 +1,15 @@
+import dynamic from 'next/dynamic'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import AnimatedCounter from '@/components/AnimatedCounter'
-import Highlights from '@/components/Highlights'
-import Experiences from '@/components/Experiences'
-import Suluada from '@/components/Suluada'
-import Gallery from '@/components/Gallery'
-import TravelInfo from '@/components/TravelInfo'
-import CTA from '@/components/CTA'
-import Footer from '@/components/Footer'
+
+const AnimatedCounter = dynamic(() => import('@/components/AnimatedCounter'))
+const Highlights = dynamic(() => import('@/components/Highlights'))
+const Experiences = dynamic(() => import('@/components/Experiences'))
+const Suluada = dynamic(() => import('@/components/Suluada'))
+const Gallery = dynamic(() => import('@/components/Gallery'))
+const TravelInfo = dynamic(() => import('@/components/TravelInfo'))
+const CTA = dynamic(() => import('@/components/CTA'))
+const Footer = dynamic(() => import('@/components/Footer'))
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
+import { m, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
 const footerLinks = {
@@ -98,19 +98,19 @@ export default function Footer() {
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-cyan-900/50 to-transparent pointer-events-none" />
 
       {/* Subtle aurora glow */}
-      <motion.div
-        className="absolute top-20 left-1/4 w-96 h-96 rounded-full bg-cyan-400/3 blur-[120px] pointer-events-none"
+      <m.div
+        className="absolute top-20 left-1/4 w-96 h-96 rounded-full bg-cyan-400/3 blur-[80px] pointer-events-none"
         animate={shouldReduceMotion ? undefined : { opacity: [0.03, 0.06, 0.03], scale: [1, 1.1, 1] }}
         transition={shouldReduceMotion ? undefined : { duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
-        className="absolute bottom-20 right-1/4 w-80 h-80 rounded-full bg-amber-400/3 blur-[120px] pointer-events-none"
+      <m.div
+        className="absolute bottom-20 right-1/4 w-80 h-80 rounded-full bg-amber-400/3 blur-[80px] pointer-events-none"
         animate={shouldReduceMotion ? undefined : { opacity: [0.03, 0.05, 0.03], scale: [1, 1.15, 1] }}
         transition={shouldReduceMotion ? undefined : { duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
       />
 
       {/* Main footer content */}
-      <motion.div
+      <m.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -119,7 +119,7 @@ export default function Footer() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Column 1: Brand */}
-          <motion.div variants={itemVariants} className="lg:pr-8">
+          <m.div variants={itemVariants} className="lg:pr-8">
             <h3 className="font-display text-2xl text-white tracking-widest mb-4">
               ANTALYA
             </h3>
@@ -143,10 +143,10 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Column 2: Spots */}
-          <motion.div variants={itemVariants}>
+          <m.div variants={itemVariants}>
             <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-5">
               {footerLinks.spots.title}
             </h4>
@@ -159,10 +159,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
 
           {/* Column 3: Activities */}
-          <motion.div variants={itemVariants}>
+          <m.div variants={itemVariants}>
             <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-5">
               {footerLinks.activities.title}
             </h4>
@@ -175,10 +175,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
 
           {/* Column 4: Travel Info */}
-          <motion.div variants={itemVariants}>
+          <m.div variants={itemVariants}>
             <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-5">
               {footerLinks.info.title}
             </h4>
@@ -191,9 +191,9 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* Bottom bar */}
       <div className="border-t border-white/5 relative z-10">
@@ -216,7 +216,7 @@ export default function Footer() {
               className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 group"
               aria-label="Back to top"
             >
-              <motion.svg
+              <m.svg
                 width="18"
                 height="18"
                 viewBox="0 0 24 24"
@@ -238,13 +238,13 @@ export default function Footer() {
                 }
               >
                 <polyline points="18 15 12 9 6 15" />
-              </motion.svg>
+              </m.svg>
             </button>
 
             {/* Tooltip */}
             <AnimatePresence>
               {backToTopHover && (
-                <motion.span
+                <m.span
                   className="absolute -top-9 left-1/2 -translate-x-1/2 text-xs text-white/70 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full whitespace-nowrap pointer-events-none"
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -252,7 +252,7 @@ export default function Footer() {
                   transition={{ duration: 0.2 }}
                 >
                   Back to top
-                </motion.span>
+                </m.span>
               )}
             </AnimatePresence>
           </div>

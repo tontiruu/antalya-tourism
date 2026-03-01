@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import SectionHeader from './SectionHeader';
 
@@ -197,20 +197,20 @@ export default function TravelInfo() {
   return (
     <section id="travel-info" className="py-24 bg-amber-50/60 relative overflow-hidden">
       {/* Background decoration */}
-      <motion.div
-        className="absolute top-20 right-0 w-80 h-80 bg-sunset-200/35 rounded-full blur-[100px]"
+      <m.div
+        className="absolute top-20 right-0 w-80 h-80 bg-sunset-200/35 rounded-full blur-[70px]"
         animate={shouldReduceMotion ? undefined : { scale: [1, 1.1, 1], opacity: [0.35, 0.5, 0.35] }}
         transition={shouldReduceMotion ? undefined : { duration: 8, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
-        className="absolute bottom-10 left-0 w-72 h-72 bg-ocean-200/25 rounded-full blur-[100px]"
+      <m.div
+        className="absolute bottom-10 left-0 w-72 h-72 bg-ocean-200/25 rounded-full blur-[70px]"
         animate={shouldReduceMotion ? undefined : { scale: [1, 1.15, 1], opacity: [0.25, 0.4, 0.25] }}
         transition={shouldReduceMotion ? undefined : { duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
@@ -220,12 +220,12 @@ export default function TravelInfo() {
             subtitle="Plan Your Journey"
             title="旅の準備"
           />
-        </motion.div>
+        </m.div>
 
         {/* 3 Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
           {/* Column 1: Best Season */}
-          <motion.div
+          <m.div
             custom={0}
             variants={columnVariants}
             initial="hidden"
@@ -248,7 +248,7 @@ export default function TravelInfo() {
 
             <div ref={seasonRef} className="space-y-5">
               {seasons.map((season) => (
-                <motion.div
+                <m.div
                   key={season.name}
                   initial="hidden"
                   whileInView="visible"
@@ -268,23 +268,23 @@ export default function TravelInfo() {
 
                   {/* Temperature bar with shimmer */}
                   <div className="h-2 bg-gray-100 rounded-full overflow-hidden relative">
-                    <motion.div
+                    <m.div
                       custom={season.level}
                       variants={barVariants}
                       className={`h-full bg-gradient-to-r ${season.barColor} rounded-full relative`}
                     >
                       <ShimmerOverlay />
-                    </motion.div>
+                    </m.div>
                   </div>
 
                   <p className="text-gray-500 text-xs leading-relaxed">{season.description}</p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Column 2: Access */}
-          <motion.div
+          <m.div
             custom={1}
             variants={columnVariants}
             initial="hidden"
@@ -345,10 +345,10 @@ export default function TravelInfo() {
                 </span>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Column 3: Basic Info */}
-          <motion.div
+          <m.div
             custom={2}
             variants={columnVariants}
             initial="hidden"
@@ -407,7 +407,7 @@ export default function TravelInfo() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

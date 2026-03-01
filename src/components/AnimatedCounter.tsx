@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 
 /* ─── stat data ─── */
 interface Stat {
@@ -55,7 +55,7 @@ function StatItem({ stat, index, inView }: { stat: Stat; index: number; inView: 
   const count = useCountUp(stat.value, inView, shouldReduceMotion ? 0 : 1500);
 
   return (
-    <motion.div
+    <m.div
       className="flex flex-col items-center gap-2 px-6 md:px-10"
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -71,7 +71,7 @@ function StatItem({ stat, index, inView }: { stat: Stat; index: number; inView: 
       <span className="text-sm text-gray-500 font-light">
         {stat.labelJa}
       </span>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -87,8 +87,8 @@ export default function AnimatedCounter() {
     >
       {/* Subtle decorative background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-ocean-100/30 blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-amber-50/40 blur-[100px]" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-ocean-100/30 blur-[80px]" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-amber-50/40 blur-[70px]" />
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
@@ -98,7 +98,7 @@ export default function AnimatedCounter() {
               <StatItem stat={stat} index={i} inView={inView} />
               {/* Vertical divider (not after last item) */}
               {i < stats.length - 1 && (
-                <motion.div
+                <m.div
                   className="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-gray-200 to-transparent ml-6 md:ml-10"
                   initial={{ scaleY: 0 }}
                   animate={inView ? { scaleY: 1 } : {}}
@@ -107,7 +107,7 @@ export default function AnimatedCounter() {
               )}
               {/* Horizontal divider on mobile */}
               {i < stats.length - 1 && (
-                <motion.div
+                <m.div
                   className="md:hidden w-24 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent absolute"
                   style={{ display: "none" }}
                 />

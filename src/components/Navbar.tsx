@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
   { label: 'ホーム', href: '#hero', section: 'hero' },
@@ -21,14 +21,24 @@ export default function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
+    let rafId: number | null = null;
+
     const handleScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 50);
-      // Smooth blur transition: 0 at top, 1 at 150px
-      setScrollProgress(Math.min(y / 150, 1));
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        const y = window.scrollY;
+        setScrolled(y > 50);
+        // Smooth blur transition: 0 at top, 1 at 150px
+        setScrollProgress(Math.min(y / 150, 1));
+        rafId = null;
+      });
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Active section detection via IntersectionObserver
@@ -88,7 +98,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <motion.a
+          <m.a
             href="#hero"
             className={`font-display text-xl md:text-2xl tracking-widest font-bold transition-colors duration-400 ${
               scrolled ? 'text-ocean-800' : 'text-white'
@@ -98,14 +108,14 @@ export default function Navbar() {
             transition={{ duration: 0.5 }}
           >
             ANTALYA
-          </motion.a>
+          </m.a>
 
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link, i) => {
               const isActive = activeSection === link.section;
               return (
-                <motion.a
+                <m.a
                   key={link.href}
                   href={link.href}
                   className={`relative text-sm font-medium transition-colors duration-300 py-1 ${
@@ -123,7 +133,7 @@ export default function Navbar() {
                 >
                   {link.label}
                   {/* Active/hover underline */}
-                  <motion.span
+                  <m.span
                     className={`absolute -bottom-0.5 left-0 h-0.5 rounded-full ${
                       scrolled ? 'bg-ocean-500' : 'bg-white'
                     }`}
@@ -142,12 +152,12 @@ export default function Navbar() {
                       }`}
                     />
                   )}
-                </motion.a>
+                </m.a>
               );
             })}
 
             {/* CTA Button */}
-            <motion.a
+            <m.a
               href="#travel-info"
               className="bg-ocean-500 hover:bg-ocean-600 text-white text-sm font-medium px-5 py-2 rounded-full transition-colors duration-300"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -155,7 +165,7 @@ export default function Navbar() {
               transition={{ duration: 0.4, delay: 0.6 }}
             >
               旅を計画する
-            </motion.a>
+            </m.a>
           </div>
 
           {/* Mobile Hamburger */}
@@ -165,7 +175,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
           >
-            <motion.span
+            <m.span
               className={`block w-6 h-0.5 rounded transition-colors duration-300 ${
                 scrolled ? 'bg-gray-800' : 'bg-white'
               }`}
@@ -175,14 +185,14 @@ export default function Navbar() {
               }}
               transition={{ duration: 0.3 }}
             />
-            <motion.span
+            <m.span
               className={`block w-6 h-0.5 rounded transition-colors duration-300 ${
                 scrolled ? 'bg-gray-800' : 'bg-white'
               }`}
               animate={{ opacity: mobileOpen ? 0 : 1 }}
               transition={{ duration: 0.2 }}
             />
-            <motion.span
+            <m.span
               className={`block w-6 h-0.5 rounded transition-colors duration-300 ${
                 scrolled ? 'bg-gray-800' : 'bg-white'
               }`}
@@ -199,7 +209,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             className="md:hidden bg-white/95 backdrop-blur-lg border-t border-gray-100"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
@@ -210,7 +220,7 @@ export default function Navbar() {
               {navLinks.map((link, i) => {
                 const isActive = activeSection === link.section;
                 return (
-                  <motion.a
+                  <m.a
                     key={link.href}
                     href={link.href}
                     onClick={handleLinkClick}
@@ -229,10 +239,10 @@ export default function Navbar() {
                       )}
                       {link.label}
                     </span>
-                  </motion.a>
+                  </m.a>
                 );
               })}
-              <motion.a
+              <m.a
                 href="#travel-info"
                 onClick={handleLinkClick}
                 className="block mt-3 text-center bg-ocean-500 hover:bg-ocean-600 text-white font-medium px-5 py-3 rounded-full transition-colors duration-300"
@@ -241,9 +251,9 @@ export default function Navbar() {
                 transition={{ duration: 0.3, delay: 0.3 }}
               >
                 旅を計画する
-              </motion.a>
+              </m.a>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </nav>

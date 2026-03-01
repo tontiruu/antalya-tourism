@@ -1,8 +1,9 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { containerVariants, itemVariants } from '@/lib/animations';
 import Image from 'next/image';
+import ctaBgImage from '../../public/images/cta-bg.jpg';
 
 const particles = [
   { top: '10%', right: '15%', size: 'w-1.5 h-1.5', opacity: 'bg-amber-300/30', duration: 6, delay: 0 },
@@ -33,7 +34,7 @@ export default function CTA() {
       {/* Fullscreen photo background with Ken Burns effect */}
       <div className="relative min-h-[80vh] md:min-h-[90vh] flex items-center justify-center">
         {/* Background image with Ken Burns zoom */}
-        <motion.div
+        <m.div
           className="absolute inset-0"
           animate={
             shouldReduceMotion
@@ -53,14 +54,15 @@ export default function CTA() {
           }
         >
           <Image
-            src="/images/cta-bg.jpg"
+            src={ctaBgImage}
             alt="Antalya sunset view"
             fill
             className="object-cover"
             sizes="100vw"
             priority={false}
+            placeholder="blur"
           />
-        </motion.div>
+        </m.div>
 
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
@@ -70,8 +72,8 @@ export default function CTA() {
 
         {/* Aurora-style animated overlays (subtle, on top of the image) */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute top-0 -left-1/4 w-3/4 h-3/4 rounded-full bg-cyan-400/8 blur-[100px]"
+          <m.div
+            className="absolute top-0 -left-1/4 w-3/4 h-3/4 rounded-full bg-cyan-400/8 blur-[70px]"
             animate={
               shouldReduceMotion
                 ? undefined
@@ -83,8 +85,8 @@ export default function CTA() {
             }
             transition={infiniteTransition(14)}
           />
-          <motion.div
-            className="absolute bottom-0 -right-1/4 w-2/3 h-2/3 rounded-full bg-amber-400/6 blur-[100px]"
+          <m.div
+            className="absolute bottom-0 -right-1/4 w-2/3 h-2/3 rounded-full bg-amber-400/6 blur-[70px]"
             animate={
               shouldReduceMotion
                 ? undefined
@@ -96,8 +98,8 @@ export default function CTA() {
             }
             transition={infiniteTransition(16)}
           />
-          <motion.div
-            className="absolute top-1/2 left-1/3 w-1/2 h-1/2 rounded-full bg-teal-300/5 blur-[100px]"
+          <m.div
+            className="absolute top-1/2 left-1/3 w-1/2 h-1/2 rounded-full bg-teal-300/5 blur-[70px]"
             animate={
               shouldReduceMotion
                 ? undefined
@@ -112,7 +114,7 @@ export default function CTA() {
         </div>
 
         {/* Content */}
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -120,15 +122,15 @@ export default function CTA() {
           className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 py-20"
         >
           {/* Small label */}
-          <motion.span
+          <m.span
             variants={itemVariants}
             className="inline-block text-sm tracking-[0.3em] text-amber-300/90 uppercase font-medium mb-8"
           >
             YOUR JOURNEY AWAITS
-          </motion.span>
+          </m.span>
 
           {/* Main heading with text shadow */}
-          <motion.h2
+          <m.h2
             variants={itemVariants}
             className="text-5xl md:text-7xl font-display text-white font-bold leading-tight mb-6"
             style={{
@@ -138,16 +140,16 @@ export default function CTA() {
             アンタルヤが
             <br />
             あなたを待っています
-          </motion.h2>
+          </m.h2>
 
           {/* Decorative line */}
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="w-24 h-px bg-gradient-to-r from-transparent via-amber-300/60 to-transparent mx-auto mb-10"
           />
 
           {/* Sub message */}
-          <motion.p
+          <m.p
             variants={itemVariants}
             className="text-lg md:text-xl text-white/85 max-w-2xl mx-auto leading-relaxed mb-14"
             style={{
@@ -157,22 +159,22 @@ export default function CTA() {
             地中海の宝石で、一生の思い出を作りましょう。
             <br className="hidden sm:block" />
             今すぐ旅の計画を始めませんか?
-          </motion.p>
+          </m.p>
 
           {/* Buttons */}
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             {/* Primary CTA button with glow */}
-            <motion.a
+            <m.a
               href="#hero"
               className="relative inline-flex items-center px-12 py-5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-lg shadow-xl shadow-amber-500/30 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/40 hover:-translate-y-1"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               {/* Pulse ring */}
-              <motion.span
+              <m.span
                 className="absolute inset-0 rounded-full border-2 border-amber-400/40"
                 animate={
                   shouldReduceMotion
@@ -185,7 +187,7 @@ export default function CTA() {
                 transition={infiniteTransition(2.5)}
               />
               {/* Outer glow ring */}
-              <motion.span
+              <m.span
                 className="absolute -inset-1 rounded-full border border-amber-300/20"
                 animate={
                   shouldReduceMotion
@@ -198,23 +200,23 @@ export default function CTA() {
                 transition={infiniteTransition(3, 0.5)}
               />
               旅を計画する
-            </motion.a>
+            </m.a>
 
             {/* Secondary button - glassmorphism */}
-            <motion.a
+            <m.a
               href="#footer"
               className="inline-flex items-center px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/30 text-white font-medium text-base transition-all duration-300 hover:bg-white/20 hover:border-white/40 hover:-translate-y-0.5"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               お問い合わせ
-            </motion.a>
-          </motion.div>
-        </motion.div>
+            </m.a>
+          </m.div>
+        </m.div>
 
         {/* Floating decorative particles */}
         {particles.map((p, i) => (
-          <motion.div
+          <m.div
             key={i}
             className={`absolute rounded-full ${p.size} ${p.opacity}`}
             style={{

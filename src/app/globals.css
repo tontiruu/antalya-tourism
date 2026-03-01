@@ -21,17 +21,6 @@ body {
 
 /* ─── Custom animations ─── */
 
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -41,41 +30,11 @@ body {
   }
 }
 
-@keyframes clipReveal {
-  0% {
-    clip-path: inset(100% 0 0 0);
-  }
-  100% {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes kenBurns {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.15);
-  }
-}
-
 /* ─── Animation utility classes ─── */
-
-.animate-slide-in {
-  animation: slideIn 0.6s ease-out forwards;
-}
 
 .animate-shimmer {
   animation: shimmer 3s ease-in-out infinite;
   background-size: 200% 100%;
-}
-
-.animate-clip-reveal {
-  animation: clipReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.animate-ken-burns {
-  animation: kenBurns 20s ease-in-out infinite alternate;
 }
 
 /* ─── Text effects ─── */
@@ -84,50 +43,29 @@ body {
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.text-shadow-md {
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
 /* ─── Custom scrollbar styling ─── */
 
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
   width: 6px;
 }
 
-::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   background: #0891b2;
   border-radius: 3px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover {
   background: #0e7490;
 }
 
 /* Firefox scrollbar */
-* {
+body {
   scrollbar-width: thin;
   scrollbar-color: #0891b2 #f1f5f9;
-}
-
-/* ─── Section transition helpers ─── */
-
-.section-transition {
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.section-fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.section-fade.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* ─── Reduced motion preference ─── */

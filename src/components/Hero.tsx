@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
+import heroImage from "../../public/images/antalya-hero.jpg";
 
 /* ─── floating particle data ─── */
 const particles = [
@@ -36,7 +37,7 @@ export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden">
       {/* ──────── Background image + Ken Burns ──────── */}
-      <motion.div
+      <m.div
         className="absolute inset-0"
         animate={
           shouldReduceMotion
@@ -50,14 +51,15 @@ export default function Hero() {
         }
       >
         <Image
-          src="/images/antalya-hero.jpg"
+          src={heroImage}
           alt="Cinematic coastline of Antalya"
           fill
           className="object-cover"
           priority
           sizes="100vw"
+          placeholder="blur"
         />
-      </motion.div>
+      </m.div>
 
       {/* ──────── Gradient overlays (3-band) ──────── */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
@@ -66,25 +68,25 @@ export default function Hero() {
       {/* ──────── Aurora glow overlays ──────── */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Cyan top-left */}
-        <motion.div
-          className="absolute -top-1/4 -left-1/4 w-[80%] h-[80%] rounded-full bg-cyan-400/8 blur-[120px]"
+        <m.div
+          className="absolute -top-1/4 -left-1/4 w-[80%] h-[80%] rounded-full bg-cyan-400/8 blur-[80px]"
           animate={shouldReduceMotion ? undefined : { x: [0, 100, 0], y: [0, 60, 0], scale: [1, 1.25, 1] }}
           transition={inf(14)}
         />
         {/* Teal center */}
-        <motion.div
-          className="absolute top-1/4 right-1/4 w-[60%] h-[60%] rounded-full bg-teal-300/6 blur-[100px]"
+        <m.div
+          className="absolute top-1/4 right-1/4 w-[60%] h-[60%] rounded-full bg-teal-300/6 blur-[70px]"
           animate={shouldReduceMotion ? undefined : { x: [0, -50, 0], y: [0, 70, 0], scale: [1, 1.15, 1] }}
           transition={inf(18, 2)}
         />
         {/* Amber bottom-right */}
-        <motion.div
-          className="absolute -bottom-1/4 -right-1/4 w-[75%] h-[75%] rounded-full bg-amber-400/6 blur-[120px]"
+        <m.div
+          className="absolute -bottom-1/4 -right-1/4 w-[75%] h-[75%] rounded-full bg-amber-400/6 blur-[80px]"
           animate={shouldReduceMotion ? undefined : { x: [0, -80, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
           transition={inf(16, 1)}
         />
         {/* Subtle cyan accent */}
-        <motion.div
+        <m.div
           className="absolute top-1/2 left-1/3 w-[40%] h-[40%] rounded-full bg-cyan-200/5 blur-[80px]"
           animate={shouldReduceMotion ? undefined : { x: [0, 60, 0], y: [0, -40, 0], scale: [1, 1.3, 1] }}
           transition={inf(20, 3)}
@@ -93,7 +95,7 @@ export default function Hero() {
 
       {/* ──────── Floating particles ──────── */}
       {particles.map((p, i) => (
-        <motion.div
+        <m.div
           key={i}
           className={`absolute rounded-full ${p.size} ${p.color}`}
           style={{ top: p.top, left: p.left, right: p.right }}
@@ -113,19 +115,19 @@ export default function Hero() {
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 text-center">
         <div className="flex flex-col items-center">
           {/* Label: TURKISH RIVIERA - letter-spacing reveal */}
-          <motion.span
+          <m.span
             className="text-sm tracking-[0.3em] text-amber-300 uppercase font-medium mb-6 inline-block"
             initial={{ opacity: 0, letterSpacing: "0em" }}
             animate={{ opacity: 1, letterSpacing: "0.3em" }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
           >
             TURKISH RIVIERA
-          </motion.span>
+          </m.span>
 
           {/* Main title: split-text character reveal */}
           <h1 className="text-5xl sm:text-7xl md:text-9xl font-display text-white font-bold leading-tight mb-4 text-shadow-lg overflow-hidden">
             {titleChars.map((char, i) => (
-              <motion.span
+              <m.span
                 key={i}
                 className="inline-block"
                 initial={{ y: "100%", opacity: 0 }}
@@ -137,22 +139,22 @@ export default function Hero() {
                 }}
               >
                 {char}
-              </motion.span>
+              </m.span>
             ))}
           </h1>
 
           {/* Subtitle */}
-          <motion.p
+          <m.p
             className="text-xl md:text-2xl text-white/90 font-light mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}
           >
             地中海に輝くトルコの宝石
-          </motion.p>
+          </m.p>
 
           {/* Decorative line */}
-          <motion.div
+          <m.div
             className="w-20 h-px bg-gradient-to-r from-transparent via-amber-300/70 to-transparent mb-8"
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
@@ -160,7 +162,7 @@ export default function Hero() {
           />
 
           {/* Description */}
-          <motion.p
+          <m.p
             className="text-white/70 text-base md:text-lg max-w-2xl leading-relaxed mb-12"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -169,10 +171,10 @@ export default function Hero() {
             紺碧の海、古代遺跡、美しいビーチが広がるトルコ南部の楽園。
             <br className="hidden sm:block" />
             アンタルヤで忘れられない旅を。
-          </motion.p>
+          </m.p>
 
           {/* Buttons */}
-          <motion.div
+          <m.div
             className="flex flex-col sm:flex-row gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -185,7 +187,7 @@ export default function Hero() {
             >
               {/* Pulsating outer ring */}
               <span className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 opacity-0 group-hover:opacity-40 blur-lg transition-opacity duration-500" />
-              <motion.span
+              <m.span
                 className="absolute inset-0 rounded-full border-2 border-amber-400/30"
                 animate={shouldReduceMotion ? undefined : { scale: [1, 1.15, 1], opacity: [0.6, 0, 0.6] }}
                 transition={inf(2.5)}
@@ -202,11 +204,11 @@ export default function Hero() {
             >
               詳しく見る
             </a>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* ──────── Scroll indicator (mouse shape + bounce) ──────── */}
-        <motion.div
+        <m.div
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -216,18 +218,18 @@ export default function Hero() {
             Scroll to explore
           </span>
           {/* Mouse shape */}
-          <motion.div
+          <m.div
             className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2"
             animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
             transition={inf(2)}
           >
-            <motion.div
+            <m.div
               className="w-1 h-2.5 rounded-full bg-white/60"
               animate={shouldReduceMotion ? undefined : { y: [0, 6, 0], opacity: [1, 0.3, 1] }}
               transition={inf(2)}
             />
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
 
       {/* ──────── Bottom wave divider ──────── */}
