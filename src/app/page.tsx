@@ -8,7 +8,6 @@ const Experiences = dynamic(() => import('@/components/Experiences'))
 const Suluada = dynamic(() => import('@/components/Suluada'))
 const Gallery = dynamic(() => import('@/components/Gallery'))
 const TravelInfo = dynamic(() => import('@/components/TravelInfo'))
-const CTA = dynamic(() => import('@/components/CTA'))
 const Footer = dynamic(() => import('@/components/Footer'))
 
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
       <Suluada />
       <Gallery />
       <TravelInfo />
-      <CTA />
       <Footer />
     </main>
   )
